@@ -1,0 +1,267 @@
+
+1. Ланцюжки довжиною:
+
+String.prototype.times = function(n) {
+  return Array(n + 1).join(this);
+};
+
+console.log("abc".times(3)); // "abcabcabc"
+
+
+2. Масиви з коротким синтаксисом:
+
+Array.prototype.first = function() {
+  return this[0];
+};
+
+Array.prototype.last = function() {
+  return this[this.length - 1];
+};
+
+console.log([1, 2, 3, 4, 5].first()); // 1
+console.log([1, 2, 3, 4, 5].last()); // 5
+
+
+3. Перевірка типу даних:
+function isString(value) {
+  return typeof value === "string";
+}
+
+function isNumber(value) {
+  return typeof value === "number";
+}
+
+console.log(isString("Hello")); // true
+console.log(isNumber(42)); // true
+
+
+4. Функціональний синтаксичний цукор:
+
+function curry(fn) {
+  return function curried(...args) {
+    if (args.length >= fn.length) {
+      return fn.apply(this, args);
+    } else {
+      return function(...args2) {
+        return curried.apply(this, args.concat(args2));
+      };
+    }
+  };
+}
+
+function add(a, b, c) {
+  return a + b + c;
+}
+
+const curriedAdd = curry(add);
+console.log(curriedAdd(1)(2)(3)); // 6
+
+5. Заміна входження підрядка у рядку:
+
+String.prototype.replaceAll = function(search, replace) {
+  return this.split(search).join(replace);
+};
+
+console.log("Hello, World!".replaceAll("o", "i")); // "Helli, Wirld!"
+
+
+6. Перевірка наявності елемента у масиві:
+
+Array.prototype.includes = function(element) {
+  return this.indexOf(element) !== -1;
+};
+
+console.log([1, 2, 3, 4, 5].includes(3)); // true
+console.log([1, 2, 3, 4, 5].includes(6)); // false
+
+
+7. Визначення максимального та мінімального значення у масиві:
+
+Array.prototype.max = function() {
+  return Math.max(...this);
+};
+
+Array.prototype.min = function() {
+  return Math.min(...this);
+};
+
+console.log([1, 2, 3, 4, 5].max()); // 5
+console.log([1, 2, 3, 4, 5].min()); // 1
+
+
+8. Перевірка, чи є число непарним:
+
+Number.prototype.isOdd = function() {
+  return this % 2 !== 0;
+};
+
+console.log(7.isOdd()); // true
+console.log(10.isOdd()); // false
+
+
+9. Додавання елементів до масиву з допомогою оператору "+":
+
+Array.prototype.add = function(element) {
+  return this.concat(element);
+};
+
+console.log([1, 2, 3].add(4)); // [1, 2, 3, 4]
+
+
+10. Обертання функції для перехоплення помилок:
+
+Function.prototype.tryCatch = function() {
+  try {
+    return this.apply(this, arguments);
+  } catch (error) {
+    console.error(error);
+  }
+};
+
+function divide(a, b) {
+  return a / b;
+}
+
+divide.tryCatch(10, 0); // Logs the error: "TypeError: Cannot divide by zero"
+
+
+11. Визначення кількості елементів у масиві:
+
+Array.prototype.count = function() {
+  return this.length;
+};
+
+console.log([1, 2, 3, 4, 5].count()); // 5
+
+
+12. Перевірка, чи є рядок паліндромом:
+
+String.prototype.isPalindrome = function() {
+  const reversed = this.split("").reverse().join("");
+  return this === reversed;
+};
+
+console.log("level".isPalindrome()); // true
+console.log("hello".isPalindrome()); // false
+
+
+13. Отримання всіх унікальних елементів у масиві:
+
+Array.prototype.unique = function() {
+  return [...new Set(this)];
+};
+
+console.log([1, 2, 2, 3, 3, 4, 5, 5].unique()); // [1, 2, 3, 4, 5]
+
+
+14. Переведення рядка в нижній регістр:
+
+String.prototype.toLowerCase = function() {
+  return this.toLowerCase();
+};
+
+console.log("Hello, World!".toLowerCase()); // "hello, world!"
+
+
+15. Переведення рядка в верхній регістр:
+
+String.prototype.toUpperCase = function() {
+  return this.toUpperCase();
+};
+
+console.log("Hello, World!".toUpperCase()); // "HELLO, WORLD!"
+
+
+16. Обчислення суми елементів у масиві:
+
+Array.prototype.sum = function() {
+  return this.reduce((acc, cur) => acc + cur, 0);
+};
+
+console.log([1, 2, 3, 4, 5].sum()); // 15
+
+
+17. Перевірка, чи є число додатним:
+
+Number.prototype.isPositive = function() {
+  return this > 0;
+};
+
+console.log(5.isPositive()); // true
+console.log(-3.isPositive()); // false
+
+
+18. Перевірка, чи є число від'ємним:
+
+Number.prototype.isNegative = function() {
+  return this < 0;
+};
+
+console.log(5.isNegative()); // false
+console.log(-3.isNegative()); // true
+
+
+19. Повернення зворотнього значення числа:
+
+Number.prototype.negate = function() {
+  return -this;
+};
+
+console.log(5.negate()); // -5
+console.log(-3.negate()); // 3
+
+
+20. Об'єднання масивів:
+
+Array.prototype.merge = function(...arrays) {
+  return this.concat(...arrays);
+};
+
+console.log([1, 2].merge([3, 4], [5])); // [1, 2, 3, 4, 5]
+
+
+21. Виконання функції для кожного елемента масиву:
+
+Array.prototype.forEachAsync = async function(callback) {
+  for (let i = 0; i < this.length; i++) {
+    await callback(this[i], i, this);
+  }
+};
+
+[1, 2, 3].forEachAsync(async (num) => {
+  await delay(1000);
+  console.log(num);
+});
+
+function delay(ms) {
+  return new Promise(resolve => setTimeout(resolve, ms));
+}
+
+
+22. Розбиття рядка на масив слів:
+
+String.prototype.words = function() {
+  return this.split(" ");
+};
+
+console.log("Hello, World!".words()); // ["Hello,", "World!"]
+
+
+23. Обчислення середнього значення елементів у масиві:
+
+Array.prototype.average = function() {
+  return this.sum() / this.length;
+};
+
+console.log([1, 2, 3, 4, 5].average()); // 3
+
+
+24. Генерація випадкового цілого числа:
+
+Number.randomInteger = function(min, max) {
+  return Math.floor(Math.random() * (max - min + 1)) + min;
+};
+
+console.log(Number.randomInteger(1, 10)); // Random integer between 1 and 10
+
+
