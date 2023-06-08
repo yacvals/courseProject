@@ -276,4 +276,17 @@ console.log(emptyObject.isEmpty()); // true
 const nonEmptyObject = { key: "value" };
 console.log(nonEmptyObject.isEmpty()); // false
 
+26. Композиція функцій:
+
+const compose = (...functions) => input =>
+  functions.reduceRight((result, fn) => fn(result), input);
+
+const add5 = x => x + 5;
+const multiplyBy2 = x => x * 2;
+const subtract10 = x => x - 10;
+
+const calculate = compose(subtract10, multiplyBy2, add5);
+
+console.log(calculate(7)); // 24
+
 
