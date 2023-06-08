@@ -223,19 +223,23 @@ console.log([1, 2].merge([3, 4], [5])); // [1, 2, 3, 4, 5]
 21. Виконання функції для кожного елемента масиву:
 
 Array.prototype.forEachAsync = async function(callback) {
-  for (let i = 0; i < this.length; i++) {
-    await callback(this[i], i, this);
+  for (const [index, item] of this.entries()) {
+    await callback(item, index, this);
   }
 };
 
-[1, 2, 3].forEachAsync(async (num) => {
-  await delay(1000);
-  console.log(num);
-});
+const delay = (ms) => new Promise(resolve => setTimeout(resolve, ms));
 
-function delay(ms) {
-  return new Promise(resolve => setTimeout(resolve, ms));
-}
+const executeAsync = async () => {
+  const array = [1, 2, 3];
+  
+  await array.forEachAsync(async (num) => {
+    await delay(1000);
+    console.log(num);
+  });
+};
+
+executeAsync();
 
 
 22. Розбиття рядка на масив слів:
