@@ -2,7 +2,7 @@
 1. Ланцюжки довжиною:
 
 String.prototype.times = function(n) {
-  return Array(n + 1).join(this);
+  rreturn this.repeat(n);
 };
 
 console.log("abc".times(3)); // "abcabcabc"
