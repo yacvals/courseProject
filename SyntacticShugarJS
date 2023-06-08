@@ -264,4 +264,16 @@ Number.randomInteger = function(min, max) {
 
 console.log(Number.randomInteger(1, 10)); // Random integer between 1 and 10
 
+25. Перевірка, чи є об'єкт пустим:
+
+Object.prototype.isEmpty = function() {
+  return Object.keys(this).length === 0;
+};
+
+const emptyObject = {};
+console.log(emptyObject.isEmpty()); // true
+
+const nonEmptyObject = { key: "value" };
+console.log(nonEmptyObject.isEmpty()); // false
+
 
