@@ -1,11 +1,8 @@
 
 1. Ланцюжки довжиною:
 
-String.prototype.times = function(n) {
-  rreturn this.repeat(n);
-};
-
-console.log("abc".times(3)); // "abcabcabc"
+const concatenation = (str, n) => str.repeat(n);
+console.log(concatenation('abc', 3))
 
 
 2. Масиви з коротким синтаксисом:
