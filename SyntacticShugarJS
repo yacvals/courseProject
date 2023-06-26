@@ -53,11 +53,9 @@ console.log(curriedAdd(1)(2)(3)); // 6
 
 5. Заміна входження підрядка у рядку:
 
-String.prototype.replaceAll = function(search, replace) {
-  return this.split(search).join(replace);
-};
+const replaceAll = (str, search, replace) => str.split(search).join(replace);
 
-console.log("Hello, World!".replaceAll("o", "i")); // "Helli, Wirld!"
+console.log(replaceAll("Hello, World!", "o", "i")); // "Helli, Wirld!"
 
 
 6. Перевірка наявності елемента у масиві:
