@@ -255,11 +255,11 @@ console.log([1, 2, 3, 4, 5].average()); // 3
 
 24. Генерація випадкового цілого числа:
 
-Number.randomInteger = function(min, max) {
+const randomInteger = (min, max) => {
   return Math.floor(Math.random() * (max - min + 1)) + min;
 };
 
-console.log(Number.randomInteger(1, 10)); // Random integer between 1 and 10
+console.log(randomInteger(1, 10)); // Random integer between 1 and 10
 
 25. Перевірка, чи є об'єкт пустим:
 
