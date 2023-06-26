@@ -32,12 +32,12 @@ console.log(type(42)); // is Number
 
 4. Функціональний синтаксичний цукор:
 
-function curry(fn) {
+const curry = (fn) => {
   return function curried(...args) {
     if (args.length >= fn.length) {
       return fn.apply(this, args);
     } else {
-      return function(...args2) {
+      return (...args2) => {
         return curried.apply(this, args.concat(args2));
       };
     }
